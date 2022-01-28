@@ -20,7 +20,9 @@ const ShoppingCart = () => {
   };
   return (
     <div>
-      <h4 onClick={() => console.log(shoppingCart)}>Cart</h4>
+      <h4 onClick={() => console.log(shoppingCart)}>
+        Cart (Click each item to remove from cart!)
+      </h4>
       <div
         style={{
           display: "flex",
