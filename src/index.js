@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 import StartUp from './recoilComponents/StartUp';
-import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import { AnimatePresence, LayoutGroup } from 'framer-motion';
 import { WindowHookComp } from './recoilStates/windowResize';
 ReactDOM.render(
   <>
-    <AnimateSharedLayout>
+    <LayoutGroup>
       <AnimatePresence exitBeforeEnter>
         <RecoilRoot>
           <React.StrictMode>
@@ -19,7 +19,7 @@ ReactDOM.render(
           </React.StrictMode>
         </RecoilRoot>
       </AnimatePresence>
-    </AnimateSharedLayout>
+    </LayoutGroup>
   </>,
   document.getElementById('root')
 );

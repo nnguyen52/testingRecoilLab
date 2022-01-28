@@ -28,9 +28,9 @@ code {
 .removeBtn:hover {
   background-color: rgba(255, 0, 0, 0.8);
 }
-.eachGameWrapper {
+/* .canHoverGameList {
   transition: all 0.5s ease-in-out;
 }
-.eachGameWrapper:hover {
-  border: 2px solid red;
-}
+.canHoverGameList:hover {
+  border: 1px solid greenyellow;
+} */

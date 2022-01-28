@@ -1,12 +1,12 @@
-import axios from "axios";
-import { atomFamily, atom, selector, selectorFamily } from "recoil";
+import axios from 'axios';
+import { atom, selectorFamily } from 'recoil';
 export const gameListState = atom({
-  key: "gameListState",
+  key: 'gameListState',
   default: [],
 });
 
 export const gameListStateHandler = selectorFamily({
-  key: "gameListStateHandler",
+  key: 'gameListStateHandler',
   get:
     () =>
     ({ get }) => {
@@ -24,11 +24,11 @@ export const fetchGames = async () => {
 };
 
 export const shoppingCart = atom({
-  key: "shoppingCart",
+  key: 'shoppingCart',
   default: [],
 });
 export const shoppingCartHandler = selectorFamily({
-  key: "shoppingCartHandler",
+  key: 'shoppingCartHandler',
   get:
     () =>
     ({ get }) => {

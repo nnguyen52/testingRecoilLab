@@ -10,14 +10,13 @@ const ShoppingCart = () => {
     setGameList((currentGameList) =>
       currentGameList.map((each) => {
         if (each.bought && each.id === game.id) {
-          return { ...each, bought: false };
+          return { ...each, bought: false, makeDisable: false };
         } else {
           return each;
         }
       })
     );
   };
-
   return (
     <div
       style={{
@@ -27,11 +26,10 @@ const ShoppingCart = () => {
         paddingRight: '3vmin',
       }}
     >
-      <h4 style={{ textAlign: 'center' }}>Cart</h4>
+      <h4 style={{ textAlign: 'center' }} onClick={() => console.log(shoppingCart)}>
+        Cart
+      </h4>
       <motion.div
-        transition={{
-          ease: 'easeOut',
-        }}
         style={{
           display: 'flex',
           flexWrap: 'wrap',

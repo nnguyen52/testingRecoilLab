@@ -1,18 +1,17 @@
-import { motion } from 'framer-motion';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { LayoutGroup, motion } from 'framer-motion';
+import { useRecoilState } from 'recoil';
 import EachGame from '../components/EachGame';
 import { gameListStateHandler, shoppingCartHandler } from '../recoilStates/index';
 const GameList = () => {
   const [gameList, setGameList] = useRecoilState(gameListStateHandler());
   const [shoppingCart, setShoppingcart] = useRecoilState(shoppingCartHandler());
   const handleChooseGame = (game) => {
-    if (!shoppingCart) return alert('Server error...');
     if (shoppingCart.some((prev) => prev.id === game.id)) return;
     setShoppingcart((prev) => [...prev, { ...game, canRemove: true }]);
     setGameList(
       gameList.map((each) => {
         if (each.id !== game.id) return each;
-        else return { ...game, bought: true };
+        else return { ...game, bought: true, makeDisable: true };
       })
     );
   };
@@ -39,7 +38,9 @@ const GameList = () => {
         paddingRight: '3vmin',
       }}
     >
-      <h4 style={{ textAlign: 'center' }}>Games</h4>
+      <h4 style={{ textAlign: 'center' }} onClick={() => console.log(gameList)}>
+        Games
+      </h4>
       {gameList && gameList.length == 0 && <>Loading...</>}
       <motion.div
         variants={gameListContainer}
