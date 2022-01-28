@@ -1,18 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { RecoilRoot } from "recoil";
-import StartUp from "./recoilComponents/StartUp";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { RecoilRoot } from 'recoil';
+import StartUp from './recoilComponents/StartUp';
+import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import { WindowHookComp } from './recoilStates/windowResize';
 ReactDOM.render(
-  <RecoilRoot>
-    <React.StrictMode>
-      <StartUp />
-      <App />
-    </React.StrictMode>
-  </RecoilRoot>,
-  document.getElementById("root")
+  <>
+    <AnimateSharedLayout>
+      <AnimatePresence exitBeforeEnter>
+        <RecoilRoot>
+          <React.StrictMode>
+            <WindowHookComp />
+            <StartUp />
+            <App />
+          </React.StrictMode>
+        </RecoilRoot>
+      </AnimatePresence>
+    </AnimateSharedLayout>
+  </>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

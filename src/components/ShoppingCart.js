@@ -1,16 +1,15 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { gameListStateHandler, shoppingCartHandler } from "../recoilStates";
-import EachGame from "./EachGame";
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { gameListStateHandler, shoppingCartHandler } from '../recoilStates';
+import EachGame from './EachGame';
+import { motion } from 'framer-motion';
 const ShoppingCart = () => {
   const [shoppingCart, setShoppingCart] = useRecoilState(shoppingCartHandler());
-  const [gameList, setGameList] = useRecoilState(gameListStateHandler());
+  const setGameList = useSetRecoilState(gameListStateHandler());
   const removeFromCart = (game) => {
-    setShoppingCart((currentCart) =>
-      currentCart.filter((each) => each.id !== game.id)
-    );
+    setShoppingCart((currentCart) => currentCart.filter((each) => each.id !== game.id));
     setGameList((currentGameList) =>
       currentGameList.map((each) => {
-        if (each.bought) {
+        if (each.bought && each.id === game.id) {
           return { ...each, bought: false };
         } else {
           return each;
@@ -18,39 +17,39 @@ const ShoppingCart = () => {
       })
     );
   };
+
   return (
-    <div>
-      <h4 onClick={() => console.log(shoppingCart)}>
-        Cart (Click each item to remove from cart!)
-      </h4>
-      <div
+    <div
+      style={{
+        maxWidth: '1080px',
+        margin: '0 auto',
+        paddingLeft: '3vmin',
+        paddingRight: '3vmin',
+      }}
+    >
+      <h4 style={{ textAlign: 'center' }}>Cart</h4>
+      <motion.div
+        transition={{
+          ease: 'easeOut',
+        }}
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          flexDirection: "row",
-          padding: "5vmin",
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'row',
         }}
       >
         {shoppingCart.length > 0 &&
           shoppingCart.map((each, index) => {
             return (
               <EachGame
-                key={each.id}
+                key={index}
                 data={each}
                 forShopCart={true}
                 removeFromCart={removeFromCart}
               />
             );
           })}
-      </div>
-
-      <div
-        style={{
-          width: "100%",
-          height: "20px",
-          borderTop: "10px solid white",
-        }}
-      ></div>
+      </motion.div>
     </div>
   );
 };
